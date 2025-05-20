@@ -1,0 +1,11 @@
+{
+  "nodes": [
+    { "id": "A", "name": "System A", "type": "system" },
+    { "id": "B", "name": "System B", "type": "system" },
+    { "id": "DB1", "name": "Data Source 1", "type": "database" }
+  ],
+  "edges": [
+    { "from": "A", "to": "B", "relation": "owns" },
+    { "from": "B", "to": "DB1", "relation": "provides to" }
+  ]
+}

@@ -17,6 +17,9 @@ repositories {
 
 dependencies {
     implementation 'com.aspose:aspose-slides:23.8:jdk16'
+    //implementation 'com.aspose:aspose-slides:24.5:jdk17'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+
 }
 
 repositories {

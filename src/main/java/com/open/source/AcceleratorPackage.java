@@ -3,7 +3,7 @@ import com.aspose.slides.*;
 
 import java.awt.Color;
 
-public class TwoBlocksConnected {
+public class AcceleratorPackage {
     public static void main(String[] args) {
         // Create a new presentation
         Presentation pres = new Presentation();
@@ -32,6 +32,6 @@ public class TwoBlocksConnected {
         connector.getLineFormat().setWidth(2);
 
         // Save the presentation
-        pres.save("two_blocks_connected.pptx", SaveFormat.Pptx);
+        pres.save("inventory_report.pptx", SaveFormat.Pptx);
     }
 }
