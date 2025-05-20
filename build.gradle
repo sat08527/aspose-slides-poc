@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.open.source'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.aspose:aspose-slides:23.8:jdk16'
+}
+
+repositories {
+    maven {
+        url "https://repository.aspose.com/repo/"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
