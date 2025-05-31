@@ -1,0 +1,23 @@
+Sub PrintShapeCoordinates()
+    Dim shp As Shape
+    For Each shp In ActiveWindow.Selection.SlideRange(1).Shapes
+        Debug.Print "Name: " & shp.Name
+        Debug.Print "Left (X): " & shp.Left
+        Debug.Print "Top (Y): " & shp.Top
+        Debug.Print "Width: " & shp.Width
+        Debug.Print "Height: " & shp.Height
+        Debug.Print "----------------------"
+    Next shp
+End Sub
+
+Open PowerPoint.
+
+Draw the shape and select it.
+
+Press Alt + F11 to open VBA editor.
+
+Paste the above code.
+
+Run it (F5).
+
+Check the Immediate window (Ctrl + G) to see the output.
