@@ -1,0 +1,78 @@
+Sub PrintDetailedShapeInfo()
+    Dim shp As Shape
+    Dim slide As Slide
+    Dim i As Integer
+
+    If ActiveWindow.Selection.Type <> ppSelectionShapes Then
+        MsgBox "Please select one or more shapes on the slide."
+        Exit Sub
+    End If
+
+    Set slide = ActiveWindow.View.Slide
+    Debug.Print "====== Slide: " & slide.SlideIndex & " ======"
+
+    For Each shp In ActiveWindow.Selection.ShapeRange
+        Debug.Print "---- Shape Info ----"
+        Debug.Print "Name: " & shp.Name
+        Debug.Print "Type: " & ShapeTypeName(shp.Type)
+        Debug.Print "Left (X): " & shp.Left
+        Debug.Print "Top (Y): " & shp.Top
+        Debug.Print "Width: " & shp.Width
+        Debug.Print "Height: " & shp.Height
+        Debug.Print "Rotation: " & shp.Rotation
+        Debug.Print "Z-Order Position: " & shp.ZOrderPosition
+        
+        ' Text
+        If shp.HasTextFrame Then
+            If shp.TextFrame.HasText Then
+                Debug.Print "Text: " & shp.TextFrame.TextRange.Text
+            Else
+                Debug.Print "Text: <empty>"
+            End If
+            Debug.Print "Text Anchor: " & AnchorTypeName(shp.TextFrame.VerticalAnchor)
+        End If
+
+        ' Fill color
+        If shp.Fill.Visible Then
+            Debug.Print "Fill Color RGB: " & _
+                shp.Fill.ForeColor.RGB Mod 256 & "," & _
+                (shp.Fill.ForeColor.RGB \ 256) Mod 256 & "," & _
+                (shp.Fill.ForeColor.RGB \ 65536) Mod 256
+        Else
+            Debug.Print "Fill: None"
+        End If
+
+        ' Line color
+        If shp.Line.Visible Then
+            Debug.Print "Line Color RGB: " & _
+                shp.Line.ForeColor.RGB Mod 256 & "," & _
+                (shp.Line.ForeColor.RGB \ 256) Mod 256 & "," & _
+                (shp.Line.ForeColor.RGB \ 65536) Mod 256
+        Else
+            Debug.Print "Line: None"
+        End If
+
+        Debug.Print "-----------------------------"
+    Next shp
+End Sub
+
+' Helper to get readable shape type
+Function ShapeTypeName(t As MsoShapeType) As String
+    Select Case t
+        Case msoAutoShape: ShapeTypeName = "AutoShape"
+        Case msoTextBox: ShapeTypeName = "TextBox"
+        Case msoPicture: ShapeTypeName = "Picture"
+        Case msoLine: ShapeTypeName = "Line"
+        Case Else: ShapeTypeName = "Other (" & t & ")"
+    End Select
+End Function
+
+' Helper to get readable anchor type
+Function AnchorTypeName(a As MsoVerticalAnchor) As String
+    Select Case a
+        Case msoAnchorTop: AnchorTypeName = "Top"
+        Case msoAnchorMiddle: AnchorTypeName = "Middle"
+        Case msoAnchorBottom: AnchorTypeName = "Bottom"
+        Case Else: AnchorTypeName = "Other (" & a & ")"
+    End Select
+End Function
